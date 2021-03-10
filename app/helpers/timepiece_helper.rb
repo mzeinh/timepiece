@@ -65,8 +65,8 @@ module TimepieceHelper
     content_tag(:div, time.html_safe, class: 'timepiece-analog ' + time_of_day_class, 'data-timezone' => location, 'id' => (id unless id.blank?), 'style' => 'width:' + size + ';padding-bottom:' + size + ';')
   end
 
-  def timer(time_since = Time.now, id: '')
-    seconds_diff = (Time.now - time_since).to_i
+  def timer(time_since = Time.now.utc, id: '')
+    seconds_diff = (Time.now.utc - time_since).to_i
 
     hours = seconds_diff / 3600
     seconds_diff -= hours * 3600
